@@ -32,7 +32,7 @@ if [[ $MYSQL_DATABASE != "" ]]; then
     fi
 fi
 
-/usr/sbin/mysqld --bootstrap --verbose=0 $MYSQLD_ARGS < $tfile
+/usr/sbin/mysqld --user mysql --bootstrap --verbose=0 $MYSQLD_ARGS < $tfile
 rm -f $tfile
 
 exec /usr/sbin/mysqld --user mysql $MYSQLD_ARGS
