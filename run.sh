@@ -32,7 +32,9 @@ if [[ $MYSQL_DATABASE != "" ]]; then
     fi
 fi
 
-/usr/sbin/mysqld --user mysql --bootstrap --verbose=0 $MYSQLD_ARGS < $tfile
+# bootstrap the databases
+#   but don't enable any connections on the network just yet because this instance will shut down again
+/usr/sbin/mysqld --user mysql --bootstrap --verbose=0 --skip-networking $MYSQLD_ARGS < $tfile
 rm -f $tfile
 
 exec /usr/sbin/mysqld --user mysql $MYSQLD_ARGS
